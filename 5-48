@@ -1,0 +1,69 @@
+#include <iostream>
+#include <math.h>
+#include <conio.h>
+#include<iomanip>
+#define max 1000
+using namespace std;
+//tao mang tinh tong cac cot
+int tong(int arr[max][max], int M, int &i){
+    int sum = 0;
+    // i là gia tri cot thứ ... truyen vao.
+    // ung voi moi i, tinh tong cua moi cot
+        for (int j = 0; j <M; j++){
+            sum += arr[j][i];
+}
+return sum;}
+void hoandoi_2_so(int &a, int &b){
+    int tg;
+    tg = a;
+    a= b;
+    b = tg;
+}
+void doicho2cot(int arr[max][max],int M, int &cot1, int &cot2){
+    if ((cot1>= 0 && cot1<= M)&&(cot2 >= 0 && cot2<= M))
+    {
+        for (int c = 0; c<M ; c++){
+            hoandoi_2_so(arr[c][cot1], arr[c][cot2]);
+        }
+    }
+}
+int main (){
+    int N,M;
+    //w la khoang cach giua cac cot xuat ra man hinh
+    int w = 5;
+    cout <<"Nhap vao so hang va so cot N, M lan luot la ";
+    cin>> N>>M;
+    int arr[max][max];  
+    cout<< "Nhap vao cac phan tu so nguyen cua mang :";
+    for (int i = 0; i< N; i++){
+        for (int j = 0; j <M; j++){
+      cout<<"Phan tu thu "<<i<<","<<j<<" la : ";
+        cin>> arr[i][j];
+        }}
+        // Xuat ra ma tran vua nhap
+        cout<<"Ma tran vua nhap la :"<<endl;
+        for (int i = 0; i< N; i++){
+        for (int j = 0; j <M; j++){
+        cout<< arr[i][j]<<setw(w);
+        }
+        cout<<endl;}
+    //xuat ra man hinh tong cua cac cot
+        for (int i = 0; i< N; i++){
+            cout <<" Tong cot "<<i <<" la : "<< tong(arr,M, N)<<" \n";
+}
+    cout<<endl<<"Ma tran duoc sap xep lai theo thu tu la :"<<endl;
+    // tổng các phần tử cột nào lớn hơn cột còn lại thì đổi chổ
+    for (int i = 0; i < M; i++)
+    {
+        for (int j = i+1; j<M; j++){
+    if (tong(arr,M, i) > tong (arr, M, j)){
+        doicho2cot(arr, M, i, j);
+    }}}
+    // xuất mảng ra màn hình
+    for (int i = 0; i < M; i++)
+    {
+        for (int j = i+1; j<M; j++){
+     cout<< arr[i][j]<<setw(w);
+        }
+        cout<<endl;}
+}
