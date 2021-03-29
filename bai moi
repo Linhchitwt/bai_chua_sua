@@ -1,0 +1,55 @@
+/*Nhập và một số nguyên dương n, tiếp theo là n số nguyên dương lần lượt là các phần tử của một dãy số,
+ hãy đếm tần số (số lần xuất hiện) của các số trong dãy và in nó ra màn hình dưới dạng sau:
+  "a1 - t1; a2 - t2; ... an - tn; ", trong đó t1 là số lần xuất hiện của số a1, t2 là 
+  số lần xuất hiện của a2, ... a1, a2, .. an KHÔNG TRÙNG NHAU và được sắp xếp tăng dần*/
+#include <stdio.h>
+#include <math.h>
+//tim max cua mang
+int max(int *arr, int n){
+    int max;
+    max = arr[0];
+    for (int i = 0; i< n; i++){
+        if(arr[i] > max){
+            max = arr[i];
+        }
+    }
+    return max;
+}
+// ứng với mỗi phần tử của mảng, tìm ra tần số xuất hiện của nó
+void frequency(int *arr, int n, int *b){
+    for (int j = 0; j<= max(arr, n); j++)
+    {
+        b[j] = 0;
+    }
+    // với mỗi arr[j] thì b + 1
+    for( int j = 0; j< n; j++){
+        b[arr[j]]+=1;
+    }  
+}
+void sapxep(int *b, int &i){
+    int j = i+1;
+    int tg;
+    if(b[i] > b[j]){
+        b[i] = tg;
+        b[i] = b[j];
+        b[j] = tg;
+    }
+}
+int main(){
+    int arr[100], b[100];
+    int n,i;
+    scanf("%d", &n);
+    for(i = 0; i < n; i++){
+        scanf ("%d", &arr[i]);
+    }
+    // lặp từ i đến n; arr[0] đến max, in ra tần số
+
+
+    // làm sao chỉ để in ra mỗi phần tử arr là 1 lần đây???????????
+    for(i = 0, arr[0]; i<n, arr[i] <= max(arr, n) ; arr[i++]){
+        frequency(arr,n,b);
+        if (b[arr[i]]>0 ){ 
+   //sap xep lai         
+            sapxep(arr, i);
+        printf ("%d - %d; ", arr[i], b[arr[i]]);}
+}}
