@@ -26,13 +26,17 @@ void frequency(int *arr, int n, int *b){
         b[arr[j]]+=1;
     }  
 }
-void sapxep(int *b, int &i){
-    int j = i+1;
+void sapxep(int *b, int n){
     int tg;
-    if(b[i] > b[j]){
-        b[i] = tg;
-        b[i] = b[j];
-        b[j] = tg;
+    for (int i= 0; i<n; i++){
+        for (int j = i+1; j < n; j++)
+        {
+            if (b[i] > b[j]){
+                tg = b[i];
+                b[i]= b[j];
+                b[j] = tg;
+            }
+        }      
     }
 }
 int main(){
@@ -46,10 +50,10 @@ int main(){
 
 
     // làm sao chỉ để in ra mỗi phần tử arr là 1 lần đây???????????
-    for(i = 0, arr[0]; i<n, arr[i] <= max(arr, n) ; arr[i++]){
+    for(i = 0, arr[0]; i<n ; arr[i++]){
         frequency(arr,n,b);
         if (b[arr[i]]>0 ){ 
    //sap xep lai         
-            sapxep(arr, i);
+            sapxep(arr,n);
         printf ("%d - %d; ", arr[i], b[arr[i]]);}
 }}
