@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef int DataType;
+struct Node{
+    DataType data;
+    Node* next;
+};
+struct Queue
+{
+    Node *front;
+    Node* rear;
+};
+void InitQueue(Queue**q){
+    *q = new Queue();
+    (*q)-> front = NULL;
+    (*q) -> rear = NULL;
+}
+void Put(Queue*q, DataType x){
+    Node* temp = new Node();
+    temp -> data = x;
+    temp -> next = NULL;
+    if (q->front == NULL){
+        q-> front = temp;
+        q-> rear = temp;
+        return;
+    }
+    q -> rear -> next = temp;
+    q -> rear = temp;
+}
+void Get(Queue *q, DataType * value, bool * err){
+        *err = false;
+        if (q->front == NULL){
+            *err = true;
+            return;
+        }
+        Node * temp = q -> front;
+        *value = temp->data;
+        q->front= q->front->next;
+        if (q->front = NULL){
+            q->rear = NULL;
+        }
+        free(temp);
+}
+void Print(Queue *q){
+    Node * temp = q-> front;
+    while (temp!=  NULL)
+    {
+        printf("%d ", temp ->data);
+        temp = temp-> next;
+    }
+        printf("\n");
+}
+int main(){
+    DataType x;
+    bool err;
+    Queue *q ;
+    InitQueue(&q);
+    Put(q,5);
+    Put(q,7);
+    Put (q,10);
+    Put (q,3);
+    Print(q);
+    Get(q,&x,&err);
+    Get(q,&x,&err);
+    Get(q,&x,&err);
+Get(q,&x,&err);
+        return 1;
+}
