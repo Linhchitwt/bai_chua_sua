@@ -1,0 +1,51 @@
+#include <stdio.h> 
+#include <stdlib.h>  
+typedef int DataType;
+struct Node
+{
+    DataType data;
+    Node* next;
+};
+typedef Node* STACK;
+void initStack(STACK* S){
+    *S = NULL;
+}
+bool isEmpty(STACK S){
+    if (S == NULL){
+        return true;
+    }
+    return false;
+}
+void pushStack(STACK* S, DataType x){
+    Node* temp = new Node();
+    temp -> data = x;
+    temp -> next = *S;
+    *S = temp;
+}
+void popStack(STACK* S, DataType* x, bool *err){
+    if (isEmpty(*S)){
+        *err = true;}
+    else
+{  
+    *err = false;
+      Node* temp = *S;
+    *x = temp -> data;
+    *S = temp -> next;
+    free(temp);
+    } 
+}
+int main (){
+    STACK S;
+    initStack(&S);
+    for (int i = 0; i < 5; i++){
+        pushStack(&S, i);
+    }
+   DataType x;
+    bool err;
+    popStack(&S, &x,&err);
+    while (!err){
+        printf("%d  ", x);
+         popStack(&S, &x,&err);
+    }
+    return 1;
+}
