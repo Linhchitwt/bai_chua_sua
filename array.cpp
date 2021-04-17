@@ -23,7 +23,7 @@ void input(){
         scanf("%d", &d);
             hh[i].soluong = d;
         printf("Nhap vao gia tien : ");
-        scanf("%d", moneyy);
+        scanf("%d", &moneyy);
             hh[i].gia = moneyy;
         i++;
         size_++;
